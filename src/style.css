@@ -1,0 +1,22 @@
+h1 {
+    color: fuchsia;
+}
+h2 {
+    color: turquoise;
+}
+h3 {
+    color: goldenrod;
+}
+
+.container {
+    text-align: center;
+}
+#googleLogIn {
+    margin-top: 1em;
+    padding: 2%;
+    background-color: white;
+    border-left: 6px ridge #4285F4;
+    border-top: 6px ridge #0F9D58;
+    border-right: 6px ridge #F4B400;
+    border-bottom: 6px ridge #DB4437;
+}
