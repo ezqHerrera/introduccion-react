@@ -13,10 +13,24 @@ h3 {
 }
 #googleLogIn {
     margin-top: 1em;
-    padding: 2%;
+    padding: 1%;
     background-color: white;
-    border-left: 6px ridge #4285F4;
-    border-top: 6px ridge #0F9D58;
-    border-right: 6px ridge #F4B400;
-    border-bottom: 6px ridge #DB4437;
+    border-left: 16px ridge #4285F4;
+    border-top: 16px ridge #0F9D58;
+    border-right: 16px ridge #F4B400;
+    border-bottom: 16px ridge #DB4437;
+}
+#googleLogIn:active {
+    margin-top: 1em;
+    padding: 1%;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    border-left: 16px groove #4285F4;
+    border-top: 16px groove #0F9D58;
+    border-right: 16px groove #F4B400;
+    border-bottom: 16px groove #DB4437;
+}
+.questionCard {
+    border: 2px solid black;
+    padding: 1%;
 }
