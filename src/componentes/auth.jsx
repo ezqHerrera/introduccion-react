@@ -1,27 +1,30 @@
 import '../style.css';
+import { useState } from 'react';
 import { auth, googleProvider } from '../firebase.js';
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import { useState } from 'react';
 
 export const Auth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    console.log(auth?.currentUser?.email); // Muestra por consola el email del usuario que inició sesión
 
-    const logIn = async() => {
+    const logIn = async() => { // Inicia sesión con usuario y contraseña
         try{
             await createUserWithEmailAndPassword(auth, email, password);
         } catch(err) {
             console.error(err);
         }
     };
-    const logInConGoogle = async() => {
+
+    const logInConGoogle = async() => { // Inicia sesión con Google
         try{
             await signInWithPopup(auth, googleProvider);
         } catch(error) {
             console.error(error);
         }
     };
-    const logOut = async() => {
+
+    const logOut = async() => { // Cierra la sesión
         try {
             await signOut(auth);
             console.log('Se ha cerrado la sesión.');
