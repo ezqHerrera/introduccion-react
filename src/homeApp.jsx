@@ -7,7 +7,7 @@ const getSum = (a, b) => {
     return a + b
 }
 
-export const App = (props) => {
+export const Home = (props) => {
     return (
         <>
             <h1><b>Здравствуй, {props.name}!</b></h1>
