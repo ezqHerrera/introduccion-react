@@ -5,6 +5,7 @@ import { db } from './firebase';
 import { getDocs, collection } from 'firebase/firestore';
 import { Auth } from './componentes/auth';
 import { Home } from './homeApp';
+import { Lista } from './viewData';
 
 export default function App(){
     const [listaPreguntas, setListaPreguntas] = useState([]);
@@ -37,7 +38,8 @@ export default function App(){
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        {/* <Home name="Max Power" edad='45' resp="Казахстан официально является демократической, светской, унитарной, конституционной республикой с разнообразным культурным наследием" /> */}
-        <Auth/>
+        <Home/>
+        {/* <Auth/> */}
+        <Lista/>
     </React.StrictMode>
 )
