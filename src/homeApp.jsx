@@ -3,14 +3,6 @@ import './style.css';
 import { useState } from 'react';
 import axios from 'axios';
 
-const name = 'Máximo Cozzetti';
-const edad = parseInt(20);
-const resp = 'Казахстан официально является демократической, светской, унитарной, конституционной республикой с разнообразным культурным наследием';
-const getSum = (a, b) => {
-    return a + b
-}
-
-
 export const Home = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +17,6 @@ export const Home = (props) => {
     }
     const formStyle = {
         display: 'flex',
-        width: '30%',
         textAlign: 'center',
         border: '2px solid black',
         flexDirection: 'column',
@@ -33,7 +24,7 @@ export const Home = (props) => {
     }
 
     function handleClick(event){
-        console.log('세상아, 안녕!');
+        console.log('你好，世界！');
     }
 
     const handleSubmit = (event) => {
@@ -53,7 +44,7 @@ export const Home = (props) => {
                 <label htmlFor="email">Email</label>
                 <input id="email" type="email" value={email} onChange={(Event) => setEmail(Event.target.value)}/>
 
-                <button style={buttonStyle} onClick={handleSubmit}>버튼 요소</button>
+                <button style={buttonStyle} onClick={handleSubmit}>Añadir</button>
             </form>
         </>
     );
