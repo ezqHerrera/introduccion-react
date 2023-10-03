@@ -1,9 +1,36 @@
 import useUsers from "../hooks/useUsers";
-import './UsersTable.css';
+// import './UsersTable.css';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
 function UserTable() {
     const lista = useUsers();
-    console.log(lista);
     const users = lista.users
 
     if (lista.length === 0) {
@@ -12,27 +39,29 @@ function UserTable() {
         )
     } else {
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>E-mail</th>
-                        <th>ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.username}</td>
-                            <td>{user.password}</td>
-                            <td>{user.email}</td>
-                            <td>{user.id}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        )
+            <TableContainer component={Paper}>
+                <Table stickyHeader>
+                    <TableHead>
+                        <TableRow>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>E-mail</th>
+                            <th>ID</th>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {users.map(user => (
+                            <StyledTableRow key={user.id}>
+                                <StyledTableCell>{user.username}</StyledTableCell>
+                                <StyledTableCell>{user.password}</StyledTableCell>
+                                <StyledTableCell>{user.email}</StyledTableCell>
+                                <StyledTableCell>{user.id}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        );
     }
 }
 
