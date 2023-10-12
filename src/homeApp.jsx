@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './style.css';
 import Modal from './componentes/Modal';
-import { ModalForm } from './componentes/ModalForm';
+import { ModalForm, EditModalForm } from './componentes/ModalForm';
 
 export const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +18,7 @@ export const Home = () => {
         <>
             <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                 <ModalForm/>
+                <EditModalForm/>
             </Modal>
         </>
     );
