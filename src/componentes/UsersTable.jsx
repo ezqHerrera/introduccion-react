@@ -88,7 +88,7 @@ function UserTable() {
 
                                 <StyledTableCell>
                                   <ButtonGroup variant="text">
-                                        <EditModalForm onClick={handleOpen} color="primary" showButton={true}>Editar</EditModalForm>
+                                        <EditModalForm userId={user.id} onClick={handleOpen} color="primary" showButton={true}>Editar</EditModalForm>
                                         <Button color="error" onClick={() => handleDelete(user.id)}>Eliminar</Button>
                                   </ButtonGroup>
                                 </StyledTableCell>

@@ -78,7 +78,7 @@ const ModalForm = () => {
 };
 
 // Modal para editar usuarios
-const EditModalForm = ({showButton}) => {
+const EditModalForm = ({showButton, userId}) => {
     // showButton controla que solo se vea el botón para llamar al modal donde se lo requiera
     const [open, setOpen] = useState(false); // Controla que el modal esté abierto
     const handleOpen = () => setOpen(true); // Abre el modal
@@ -121,7 +121,7 @@ const EditModalForm = ({showButton}) => {
                     console.error('Hubo un error:', error);
                 });
         } else {
-            console.error('Esperando el ID');
+            console.error('Esperando el ID...');
         }
     }
     return (
@@ -143,7 +143,7 @@ const EditModalForm = ({showButton}) => {
                         <input id="email" type="email" value={email} onChange={(Event) => setEmail(Event.target.value)}/>
 
                         <ButtonGroup orientation='vertical' variant='text'>
-                            <Button type='submit' onClick={() => handleSave(id)}>Guardar Cambios</Button>
+                            <Button type='submit' onClick={() => handleSave(userId)}>Guardar Cambios</Button>
                             <Button type='reset' onClick={handleClose}>Cancelar</Button>
                         </ButtonGroup>
                     </form>
