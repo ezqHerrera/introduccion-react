@@ -6,11 +6,10 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { ButtonGroup } from '@mui/material';
 
-// Modal para agregar usuarios
-const ModalForm = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+// Modal para agregar posts
+const PostModalForm = () => {
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -38,54 +37,50 @@ const ModalForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault(); // Impide que, al subir el formulario, se refresque la página
         axios
-            .post('http://localhost:3000/api/users', { username, password, email })
+            .post('http://localhost:3000/api/posts', { title, content })
             .then((response) => {
                 setOpen(false);
-                console.log('Se añadió un usuario');
+                console.log('Se agregó un post');
             })
             .catch((error) => {
-                console.error('Hubo un error:', error);
+                console.log('Hubo un error:', error);
             });
     }
     return (
-            <div>
-                <Button color='primary' variant='text' onClick={handleOpen}>Agregar Usuario</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <Box sx={modalStyle}>
-                        <form method='dialog' style={formStyle} onSubmit={handleSubmit}>
-                            <label htmlFor="username">Username</label>
-                            <input id="username" type="text" value={username} onChange={(Event) => setUsername(Event.target.value)}/>
+        <div>
+            <Button color='primary' variant='text' onClick={handleOpen}>Agregar Post</Button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+            >
+                <Box sx={modalStyle}>
+                    <form method='dialog' style={formStyle} onSubmit={handleSubmit}>
+                        <label htmlFor="title">Título</label>
+                        <input id="title" type="text" value={title} onChange={(Event) => setTitle(Event.target.value)}/>
 
-                            <label htmlFor="password">Password</label>
-                            <input id="password" type="password" value={password} onChange={(Event) => setPassword(Event.target.value)}/>
+                        <label htmlFor="content">Contenido</label>
+                        <input id="content" type="text" value={content} onChange={(Event) => setContent(Event.target.value)}/>
 
-                            <label htmlFor="email">Email</label>
-                            <input id="email" type="email" value={email} onChange={(Event) => setEmail(Event.target.value)}/>
-
-                            <ButtonGroup orientation='vertical' variant='text'>
-                                <Button type='submit' onClick={handleSubmit}>Añadir</Button>
-                                <Button type='reset' onClick={handleClose}>Cancelar</Button>
-                            </ButtonGroup>
-                        </form>
-                    </Box>
-                </Modal>
-            </div>
-        );
+                        <ButtonGroup orientation='vertical' variant='text'>
+                            <Button type='submit' onClick={handleSubmit}>Añadir</Button>
+                            <Button type='reset' onClick={handleClose}>Cancelar</Button>
+                        </ButtonGroup>
+                    </form>
+                </Box>
+            </Modal>
+        </div>
+    );
 };
 
-// Modal para editar usuarios
-const EditModalForm = ({showButton, userId}) => {
+// Modal para editar posts
+const PostEditModalForm = ({showButton, postId}) => {
     // showButton controla que solo se vea el botón para llamar al modal donde se lo requiera
     const [open, setOpen] = useState(false); // Controla que el modal esté abierto
     const handleOpen = () => setOpen(true); // Abre el modal
     const handleClose = () => setOpen(false); // Cierra el modal
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
 
     const modalStyle = {
         position: 'absolute',
@@ -110,10 +105,10 @@ const EditModalForm = ({showButton, userId}) => {
         if (id) { // Realiza la operación si existe el id
             axios
             // Actualiza los datos del usuario según su id
-                .put(`http://localhost:3000/api/users/${id}`, { username, password, email })
+                .put(`http://localhost:3000/api/posts/${id}`, { title, content })
                 .then((response) => {
                     handleClose();
-                    console.log(`Se actualizó el usuario con id ${id}`);
+                    console.log(`Se actualizó el post con id ${id}`);
                 })
                 .catch((error) => {
                     console.error('Hubo un error:', error);
@@ -131,17 +126,14 @@ const EditModalForm = ({showButton, userId}) => {
             >
                 <Box sx={modalStyle}>
                     <form method='dialog' style={formStyle} onSubmit={handleSave}>
-                        <label htmlFor="username">Username</label>
-                        <input id="username" type="text" value={username} onChange={(Event) => setUsername(Event.target.value)}/>
+                        <label htmlFor="title">Título</label>
+                        <input id="title" type="text" value={title} onChange={(Event) => setTitle(Event.target.value)}/>
 
-                        <label htmlFor="password">Password</label>
-                        <input id="password" type="password" value={password} onChange={(Event) => setPassword(Event.target.value)}/>
-
-                        <label htmlFor="email">Email</label>
-                        <input id="email" type="email" value={email} onChange={(Event) => setEmail(Event.target.value)}/>
+                        <label htmlFor="content">Contenido</label>
+                        <input id="content" type="text" value={content} onChange={(Event) => setContent(Event.target.value)}/>
 
                         <ButtonGroup orientation='vertical' variant='text'>
-                            <Button type='submit' onClick={() => handleSave(userId)}>Guardar Cambios</Button>
+                            <Button type='submit' onClick={() => handleSave(postId)}>Guardar Cambios</Button>
                             <Button type='reset' onClick={handleClose}>Cancelar</Button>
                         </ButtonGroup>
                     </form>
@@ -151,4 +143,4 @@ const EditModalForm = ({showButton, userId}) => {
     );
 };
 
-export {ModalForm, EditModalForm};
+export {PostModalForm, PostEditModalForm};

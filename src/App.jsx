@@ -1,9 +1,8 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
-import UserContextProvider from './context/userContext';
+import UserContextProvider from './context/UserContext';
+import PostContextProvider from './context/PostContext';
 import UserTable from './componentes/UsersTable';
+import PostTable from './componentes/PostsTable';
 
 function App() {
   return (
@@ -11,6 +10,9 @@ function App() {
       <UserContextProvider>
         <UserTable/>
       </UserContextProvider>
+      <PostContextProvider>
+        <PostTable/>
+      </PostContextProvider>
     </>
   )
 }

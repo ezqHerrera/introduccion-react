@@ -22,7 +22,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     // Afecta las celdas en el cuerpo de la tabla
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
-    },
+    }
   }));
 
 // Estilo para filas de tablas
@@ -42,11 +42,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   }));
 
 function UserTable() {
-    const [open, setOpen] = useState(false); // Controla que el modal esté abierto
+    const [open, setOpen] = useState(false); // Controla que el modal Editar esté abierto
     const lista = useUsers(); // Solicita los usuarios del hook useUsers
     const users = lista.users;
 
-    const handleOpen = () => setOpen(true); // Abre el modal
+    const handleOpen = () => setOpen(true); // Abre el modal Editar
 
     // Elimina un usuario según su id
     const handleDelete = (id) => {
@@ -78,22 +78,22 @@ function UserTable() {
                     </TableHead>
                     <TableBody>
                       {/* Muestra una fila por cada usuario en la base de datos */}
-                        {users.map(user => (
-                           {/* Crea una fila por cada id de usuario único */},
-                            <StyledTableRow key={user.id}>
-                                <StyledTableCell>{user.username}</StyledTableCell>
-                                <StyledTableCell>{user.password}</StyledTableCell>
-                                <StyledTableCell>{user.email}</StyledTableCell>
-                                <StyledTableCell>{user.id}</StyledTableCell>
+                      {users.map(user => (
+                          {/* Crea una fila por cada id de usuario único */},
+                          <StyledTableRow key={user.id}>
+                              <StyledTableCell>{user.username}</StyledTableCell>
+                              <StyledTableCell>{user.password}</StyledTableCell>
+                              <StyledTableCell>{user.email}</StyledTableCell>
+                              <StyledTableCell>{user.id}</StyledTableCell>
 
-                                <StyledTableCell>
-                                  <ButtonGroup variant="text">
-                                        <EditModalForm userId={user.id} onClick={handleOpen} color="primary" showButton={true}>Editar</EditModalForm>
-                                        <Button color="error" onClick={() => handleDelete(user.id)}>Eliminar</Button>
-                                  </ButtonGroup>
-                                </StyledTableCell>
-                            </StyledTableRow>
-                        ))}
+                              <StyledTableCell>
+                                <ButtonGroup variant="text">
+                                      <EditModalForm userId={user.id} onClick={handleOpen} color="primary" showButton={true}>Editar</EditModalForm>
+                                      <Button color="error" onClick={() => handleDelete(user.id)}>Eliminar</Button>
+                                </ButtonGroup>
+                              </StyledTableCell>
+                          </StyledTableRow>
+                      ))}
                     </TableBody>
                 </Table>
             </TableContainer>
